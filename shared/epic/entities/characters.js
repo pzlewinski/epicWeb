@@ -33,6 +33,13 @@ var charactersEntity = function () {
 		return Math.floor(level)
 	}
 
+	function getCard() {
+		var cardGroup = game.add.group()
+		cardGroup
+
+		return cardGroup
+	}
+
 	return{
 		getLevelXp:getLevelXP,
 		getLevel:getLevel
