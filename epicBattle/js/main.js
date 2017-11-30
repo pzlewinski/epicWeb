@@ -1,4 +1,7 @@
 window.minigame = window.minigame || {}
+// window.onerror = function(){
+// 	location.reload()
+// }
 
 function startGame(){
 	window.game = new Phaser.Game(document.body.clientWidth, document.body.clientHeight, Phaser.CANVAS, null, {init: init, create: create }, true, true);
@@ -41,9 +44,6 @@ function startGame(){
         game.stage.backgroundColor = "#ffffff"
         game.time.advancedTiming = true
         game.stage.disableVisibilityChange = true;
-        
-        
-
 
         // game.plugins.add(Fabrique.Plugins.Spine);
         game.plugins.add(PhaserSpine.SpinePlugin);
@@ -62,18 +62,20 @@ function startGame(){
         // }
 
 		localization.setLanguage(parent.language)
+		for(var pIndex = 0; pIndex < epicCharacters.length; pIndex++){
+			var character = epicCharacters[pIndex]
+			epicCharacters[character.id] = character
+		}
 
 		var charactersSet = []
-		var allCharacters = epicCharacters.getCharacters()
+		var allCharacters = epicCharacters
 		var players = parent.epicModel || epicModel
 		var currentPlayer = players.getPlayer()
-		var mainCharName = allCharacters["mastoWind1"]//allCharacters["yogotar" + currentPlayer.yogotar]
+		var mainCharName = allCharacters["yogotar" + currentPlayer.yogotar]
 		console.log(mainCharName)
 		charactersSet.push(mainCharName)
-		// allCharacters = epicCharacters.slice()
-		// allCharacters = Phaser.ArrayUtils.shuffle(allCharacters)
-		var charIndex = 51//game.rnd.integerInRange(1, allCharacters.length - 1)
-		charactersSet.push(allCharacters["mastoWater1"])
+		var charIndex = game.rnd.integerInRange(0, allCharacters.length - 1)
+		charactersSet.push(allCharacters[charIndex])
 
 		console.log(charactersSet)
 		battle.setCharacters(charactersSet)

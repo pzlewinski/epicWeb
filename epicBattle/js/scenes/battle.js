@@ -279,29 +279,29 @@ var battle = function(){
 
 	function showResults(win) {
 		var resultsGroup = win ? hudGroup.winGroup : hudGroup.loseGroup
-		resultsGroup.y = 0
-
-    	game.add.tween(players[0].hpBar).to({alpha:0}, 500, Phaser.Easing.Cubic.Out, true)
-		game.add.tween(players[1].hpBar).to({alpha:0}, 500, Phaser.Easing.Cubic.Out, true)
-
-		game.add.tween(hudGroup.uiGroup).to({alpha:0}, 800, Phaser.Easing.Cubic.Out, true)
-		game.add.tween(resultsGroup).to({alpha:1}, 800, Phaser.Easing.Cubic.Out, true)
-		game.add.tween(alphaMask).to({alpha:0.7}, 800, Phaser.Easing.Cubic.Out, true)
-		if(win){createConfeti()}
-		inputsEnabled = true
-
 		if(win){players[0].setAnimation(["WIN", "WINSTILL"], true)}
-		battleSong.stop()
-		if(win){sound.play("winBattle"); hudGroup.sumLvl()}
-		else{sound.play("loseBattle")}
+
+		game.time.events.add(500, function(){
+			battleSong.stop()
+			if(win){sound.play("winBattle"); hudGroup.sumLvl()}
+			else{sound.play("loseBattle")}
+			resultsGroup.y = 0
+
+			game.add.tween(players[0].hpBar).to({alpha:0}, 500, Phaser.Easing.Cubic.Out, true)
+			game.add.tween(players[1].hpBar).to({alpha:0}, 500, Phaser.Easing.Cubic.Out, true)
+
+			game.add.tween(hudGroup.uiGroup).to({alpha:0}, 800, Phaser.Easing.Cubic.Out, true)
+			game.add.tween(resultsGroup).to({alpha:1}, 800, Phaser.Easing.Cubic.Out, true)
+			game.add.tween(alphaMask).to({alpha:0.7}, 800, Phaser.Easing.Cubic.Out, true)
+			if(win){createConfeti()}
+			inputsEnabled = true
 
 		// var toCamaraX = player.x < game.world.centerX ? 0 : game.world.width
 		// game.camera.follow(player)
-		game.time.events.add(1000, function(){
 			zoomCamera(1.5, 2000)
 			var head = players[0].getSlotContainer("particle1")
 			var torso = players[0].getSlotContainer("torso1")
-			var toX = head ? head.worldPosition.x - 200 + 40 : players[0].x - 200 + 40//200 is the left bounds limit
+			var toX = head ? head.worldPosition.x - game.world.centerX * 0.5 : players[0].x - 200 + 40//200 is the left bounds limit
 			var toY = win ? players[0].y - 310 : players[0].y - 250
 			game.add.tween(game.camera).to({x:toX, y:toY}, 2000, Phaser.Easing.Cubic.Out, true)
 		})
@@ -986,7 +986,7 @@ var battle = function(){
 		var charactersJson = []
 		for(var spineIndex = 0; spineIndex < assets.spines.length; spineIndex++){
 			var spineAsset = assets.spines[spineIndex]
-			charactersJson.push(game.cache.getJSON(spineAsset.name + "Data"))
+			charactersJson.push(epicCharacters[assets.spines[spineIndex].name])
 		}
 
 		// console.log(assets.spines[0].name, assets.spines[0].file)
@@ -1530,9 +1530,9 @@ var battle = function(){
 		setCharacters:function (characters) {
 			for(var charIndex = 0; charIndex < characters.length; charIndex++){
 				var character = characters[charIndex]
-				var jsonPath = DATA_CHAR_PATH + character.name + ".json"
-				assets.jsons.push({name:character.name + "Data", file:jsonPath})
-				assets.spines.push({name:character.name, file:character.directory})
+				// var jsonPath = DATA_CHAR_PATH + character.name + ".json"
+				// assets.jsons.push({name:character.name + "Data", file:jsonPath})
+				assets.spines.push({name:character.id, file:character.directory})
 			}
 		},
 		setBackground:function (number) {
