@@ -71,11 +71,11 @@ function startGame(){
 		var allCharacters = epicCharacters
 		var players = parent.epicModel || epicModel
 		var currentPlayer = players.getPlayer()
-		var mainCharName = allCharacters["yogotar" + currentPlayer.yogotar]
+		var mainCharName = allCharacters["toxicWater1"]//allCharacters["yogotar" + currentPlayer.yogotar]
 		console.log(mainCharName)
 		charactersSet.push(mainCharName)
 		var charIndex = game.rnd.integerInRange(0, allCharacters.length - 1)
-		charactersSet.push(allCharacters[charIndex])
+		charactersSet.push(allCharacters[["toxicFire1"]])
 
 		console.log(charactersSet)
 		battle.setCharacters(charactersSet)
