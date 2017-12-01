@@ -1625,6 +1625,10 @@ var battle = function(){
 			frontGroup.fixedToCamera = true
 			frontGroup.cameraOffset.setTo(0, 0);
 
+			// var card = charactersEntity.getCard({id:"toxicWater1", xp:0})
+			// card.x = game.world.centerX
+			// card.y = game.world.centerY
+			// sceneGroup.add(card)
         }
     }
 }()

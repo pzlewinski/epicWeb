@@ -81,6 +81,8 @@ function startGame(){
 		battle.setCharacters(charactersSet)
 		battle.setBackground()
 
+		charactersEntity.preloadCards(battle, [{id:mainCharName.id, xp:0}], [])
+
         window.minigame.game = window.game
     	sceneloader.init(game)
     	sound.init(game)
