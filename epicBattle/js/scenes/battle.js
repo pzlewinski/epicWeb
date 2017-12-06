@@ -281,7 +281,7 @@ var battle = function(){
 		var resultsGroup = win ? hudGroup.winGroup : hudGroup.loseGroup
 		if(win){players[0].setAnimation(["WIN", "WINSTILL"], true)}
 
-		game.time.events.add(500, function(){
+		game.time.events.add(1000, function(){
 			battleSong.stop()
 			if(win){sound.play("winBattle"); hudGroup.sumLvl()}
 			else{sound.play("loseBattle")}

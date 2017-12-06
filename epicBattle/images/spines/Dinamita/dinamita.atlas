@@ -319,7 +319,7 @@ normal/mouth_d9
   orig: 39, 46
   offset: 0, 0
   index: -1
-normal/particle
+normal/particle1
   rotate: false
   xy: 2, 134
   size: 216, 144
