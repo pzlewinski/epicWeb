@@ -13,7 +13,7 @@ function fromDir(startPath,filter){
 	}
 
 	var files=fs.readdirSync(startPath);
-	var characters = []
+	var characters = {}
 	var counter = 0
 	for(var i=0;i<files.length;i++){
 		var filename=path.join(startPath,files[i]);
@@ -27,10 +27,10 @@ function fromDir(startPath,filter){
 			charName = charName.replace(/.json/g, "");
 			console.log(charName, fileReplace)
 			character.id = charName
-			character.index = characters.length
+			// character.index = characters.length
 			characters[charName] = character
-			characters[counter] = character
-			counter++
+			// characters[counter] = character
+			// counter++
 			// console.log('-- found: ',filename);
 		};
 	};
