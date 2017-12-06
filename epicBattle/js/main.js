@@ -71,7 +71,7 @@ function startGame(){
 		var allCharacters = epicCharacters
 		var players = parent.epicModel || epicModel
 		var currentPlayer = players.getPlayer()
-		var mainCharName = allCharacters["pigbotEarth1"]//allCharacters["yogotar" + currentPlayer.yogotar]
+		var mainCharName = allCharacters["zuhluEarth1"]//allCharacters["yogotar" + currentPlayer.yogotar]
 		console.log(mainCharName)
 		charactersSet.push(mainCharName)
 		var charIndex = game.rnd.integerInRange(0, allCharacters.length - 1)
